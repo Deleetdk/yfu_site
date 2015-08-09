@@ -44,4 +44,4 @@ Temporary Items
 
 #django settings and basebase
 db.sqlite3
-settings.py
+secret.txt

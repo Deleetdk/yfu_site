@@ -66,7 +66,7 @@ def signup(request):
                 #save to database
                 s = SignUp(signup_date = timezone.now(), price = price, **post_data)
                 s.save()
-                return HttpResponse("Thanks for signing up!")
+                return HttpResponse("Thanks for signing up! To make your payment, please send either send Cheri a check or pay via <a href='http://paypal.com'>Paypal</a>")
             else:
                 print("not all fields were filled out for exchange student")
                 print(needed)
@@ -83,7 +83,7 @@ def signup(request):
 
                 s = SignUp(signup_date = timezone.now(), price = price, **post_data)
                 s.save()
-                return HttpResponse("Thanks for signing up!")
+                return HttpResponse("Thanks for signing up! To make your payment, please send either send Cheri a check or pay via <a href='http://paypal.com'>Paypal</a>")
             else:
                 print("not all fields were filled out for host sibling")
                 print(needed)
@@ -98,7 +98,7 @@ def signup(request):
 
                 s = SignUp(signup_date = timezone.now(), price = price, **post_data)
                 s.save()
-                return HttpResponse("Thanks for signing up!")
+                return HttpResponse("Thanks for signing up! To make your payment, please send either send Cheri a check or pay via <a href='http://paypal.com'>Paypal</a>")
             else:
                 print("not all fields were filled out for host parent")
                 print(needed)
