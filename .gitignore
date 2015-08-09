@@ -45,3 +45,4 @@ Temporary Items
 #django settings and basebase
 db.sqlite3
 secret.txt
+*.pyc

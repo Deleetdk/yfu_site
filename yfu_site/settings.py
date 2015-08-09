@@ -25,6 +25,7 @@ SECRET_KEY = ''
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+#remember to add the uerver IP here
 ALLOWED_HOSTS = []
 
 # Application definition
