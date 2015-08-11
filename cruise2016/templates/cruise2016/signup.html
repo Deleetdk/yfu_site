@@ -68,9 +68,15 @@
         }
         .exchange_ticks {
             display: none;
+            padding-top: 10px;
         }
         .host_info {
             display: none;
+            padding-top: 10px;
+        }
+        .header {
+            font-weight: bold;
+            font-size: 120%;
         }
         .port {
             padding-bottom: 10px;
@@ -116,7 +122,7 @@
                     <input type="radio" name="person_type" value="Host sibling" onclick="showExchange(false); showHost(true)">Host sibling
                     <input type="radio" name="person_type" value="Host parent" onclick="showExchange(false); showHost(false)">Host parent
                 </span>
-                <br>
+
                 <div class="exchange_ticks">
                     <span class="header">Exchange Students - Please read and tick each line below:<br></span>
                     <span class="tickInputs">
@@ -132,7 +138,7 @@
                         <input type="checkbox" name="tick10">I understand that if I pay by PayPal I need to add 4% to the total cost to cover the fees.<br>
                     </span>
                 </div>
-                <br>
+
                 <div class="host_info">
                     <span class="header">Host family information<br></span>
                     My (host) parent is <input type="text" name="host_name" value="{{ host_name }}"><br>
