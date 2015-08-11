@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 
 <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Youth for Understanding 2016 cruise">
+    <meta name="author" content="Youth for Understanding">
     <title>Sign up for the 2016 YFU cruise</title>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> 
-    
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
     <script>
     //this shows and hides the exchange ticks
     //hidden by default by css
@@ -48,7 +52,7 @@
         //update prices
         price = 450 + excursion_1 + excursion_2 + excursion_3
         price_paypal = price * 1.04;
-        
+
         //update page
         $("#price").html(price);
         $("#price_paypal").html(price_paypal);
@@ -57,142 +61,167 @@
     </script>
 
     <style type="text/css">
+        .top {
+            background-color: #eee;
+            padding: 12px;
+            border-radius: 5px;
+        }
         .exchange_ticks {
             display: none;
         }
         .host_info {
             display: none;
         }
-
-        div {
-            border: 1px solid black;
-            padding: 20px;
-        }
-        .header {
-            font-size: 30px;
-        }
         .port {
-            font-size: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        .excursion_options {
+            background-color: #eee;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-radius: 5px;
+        }
+        .price {
+            padding-bottom: 20px;
+            font-size: 120%;
+        }
+        .bot {
+            padding-top: 10px;
         }
     </style>
 </head>
 
 <body>
-<h1>Sign up for the 2016 YFU cruise!</h1>
-<p>You can sign up for the 2016 YFU cruise by filling out the form below. Please make sure to fill it out correctly.</p>
-<p>If you get returned here after clicking "Sign up!" it was because you did not fill out one or more requered files.</p>
-
-<div class="formArea">
-    <form method="post">
-        {% csrf_token %}
-        <span class="header">Basic information<br></span>
-        My name is <input type="text" name="name" value="{{ name }}"><br>
-        My gender is <input type="radio" name="gender" value="Male">Male<input type="radio" name="gender" value="Female">Female<br>
-        My age is <input type="text" name="age" value="{{ age }}"><br>
-        My phone number is <input type="text" name="phone" value="{{ phone }}"><br>
-        My email is <input type="text" name="email" value="{{ email }}"><br>
-        How many family members are going on the trip? <input type="text" name="total_family_members" value="{{ total_family_members }}"><br>
-        <span class="radio">
-            I am a(n)
-            <input type="radio" name="person_type" value="Exchange student" onclick="showExchange(true); showHost(true)">Exchange student
-            <input type="radio" name="person_type" value="Host sibling" onclick="showExchange(false); showHost(true)">Host sibling
-            <input type="radio" name="person_type" value="Host parent" onclick="showExchange(false); showHost(false)">Host parent
-        </span>
-        <br>
-        <div class="exchange_ticks">
-            <span class="header">Exchange Students - Please read and tick each line below:<br></span>
-            <span class="tickInputs">
-                <input type="checkbox" name="tick1">I have a letter from my natural parents approving my travel.<br>
-                <input type="checkbox" name="tick2">I have a signed Dangerous Activities Form.<br>
-                <input type="checkbox" name="tick3">I understand that I will need to submit the permission to travel form.<br>
-                <input type="checkbox" name="tick4">I have a signed Dangerous Activities Form.<br>
-                <input type="checkbox" name="tick5">I understand that the cost includes transportation from and back to the DFW metro area.<br>
-                <input type="checkbox" name="tick6">I understand that gratuities and spending money are not included in the cost of the cruise.<br>
-                <input type="checkbox" name="tick7">I understand that if I cancel or if I do not provide all of the required documents with me I will not get a refund.<br>
-                <input type="checkbox" name="tick8">I agree to follow all instructions and rules of my chaperones.<br>
-                <input type="checkbox" name="tick9">I agree to pay by check or PayPal by September 30, 2015.<br>
-                <input type="checkbox" name="tick10">I understand that if I pay by PayPal I need to add 4% to the total cost to cover the fees.<br>
-            </span>
+    <div class="container">
+        <h1>Sign up for the 2016 YFU cruise!</h1>
+        <div class="top">
+            <p>You can sign up for the 2016 YFU cruise by filling out the form below. Please make sure to fill it out correctly.</p>
+            <p>If you get returned here after clicking "Sign up!" it was because you did not fill out one or more requered files.</p>
         </div>
-        <br>
-        <div class="host_info">
-            <span class="header">Host family information<br></span>
-            My (host) parent is <input type="text" name="host_name" value="{{ host_name }}"><br>
-            My (host) parent's phone number is' <input type="text" name="host_phone" value="{{ host_phone }}"><br>
-            My (host) parent's email is' <input type="text" name="host_email" value="{{ host_email }}"><br>
-        </div>
-        <br>
-        <div class="excursions">
-            <span class="header">Shore Excursions<br></span>
-            You must select one excursion per port.<br><br>
-            
-                <span class="port">Cozumel</span><br>
-                <div class="excursion_options">
-                $60 <input type="radio" name="excursion_1" value="Stand-up Paddle Boarding, Snorkel and Beach" onclick="set_e1(60)">Stand-up Paddle Boarding, Snorkel and Beach<br>
-                <span class="excursion_description">
-                    <p>
-                        Your adventure starts with a short taxi ride to a fabulous Beach Club on the beautiful north side of the island.  Here you will be met by your expert guides and receive instructions on paddle boarding. Next you are off to enjoy an amazing 45 minutes paddle along the beautiful coastline.  Paddle boarding is for everyone and you can choose whether you stand or sit as enjoy this unique experience. After your paddle you will receive snorkel equipment and follow your guide into the island’s premier snorkel area.
-                    </p>
+        <div class="formArea">
+            <form method="post">
+                {% csrf_token %}
+                <h1>Basic information</h1>
+                My name is <input type="text" name="name" value="{{ name }}"><br>
+                My gender is <input type="radio" name="gender" value="Male">Male<input type="radio" name="gender" value="Female">Female<br>
+                My age is <input type="text" name="age" value="{{ age }}"><br>
+                My phone number is <input type="text" name="phone" value="{{ phone }}"><br>
+                My email is <input type="text" name="email" value="{{ email }}"><br>
+                How many family members are going on the trip? <input type="text" name="total_family_members" value="{{ total_family_members }}"><br>
+                <span class="radio">
+                    I am a(n)
+                    <input type="radio" name="person_type" value="Exchange student" onclick="showExchange(true); showHost(true)">Exchange student
+                    <input type="radio" name="person_type" value="Host sibling" onclick="showExchange(false); showHost(true)">Host sibling
+                    <input type="radio" name="person_type" value="Host parent" onclick="showExchange(false); showHost(false)">Host parent
                 </span>
-                $70 <input type="radio" name="excursion_1" value="Ancient Culture / Mayan Ruins &amp; Beach" onclick="set_e1(70)">Ancient Culture / Mayan Ruins &amp; Beach<br>
-                <span class="excursion_description">
-                    <p>
-                        Begin your tour with a short drive through Cozumel’s largest town, San Miguel, to see local houses, shops and modern-day residents, many of who are descendants of the area’s original Mayan inhabitants. Away from modern civilization and nestled in the jungle, San Gervasio was once the island’s center of culture and religion. Your certified guide will lead you through the archaeological site and share important facts, cultural histories and myths along the way. After returning to the bus, you will head off for a scenic drive along Cozumel’s beautiful East side. Away from the bustle of town, this nearly undeveloped coast is a side of the island that few visitors get to see and offers an idyllic landscape of white sand beaches, rugged rock formations, lush tropical vegetation and the iridescent waters of the Caribbean. Stop to enjoy one full hour to relax on the beach.
-                    </p>
-                </span>
-                Free <input type="radio" name="excursion_1" value="Stay on ship" onclick="set_e1(0)">Stay on ship<br>
-                <span class="excursion_description">
-                    <p>
-                        A chaperone will stay on the ship if any minor chooses this option.
-                    </p>
-                </span>
+                <br>
+                <div class="exchange_ticks">
+                    <span class="header">Exchange Students - Please read and tick each line below:<br></span>
+                    <span class="tickInputs">
+                        <input type="checkbox" name="tick1">I have a letter from my natural parents approving my travel.<br>
+                        <input type="checkbox" name="tick2">I have a signed Dangerous Activities Form.<br>
+                        <input type="checkbox" name="tick3">I understand that I will need to submit the permission to travel form.<br>
+                        <input type="checkbox" name="tick4">I have a signed Dangerous Activities Form.<br>
+                        <input type="checkbox" name="tick5">I understand that the cost includes transportation from and back to the DFW metro area.<br>
+                        <input type="checkbox" name="tick6">I understand that gratuities and spending money are not included in the cost of the cruise.<br>
+                        <input type="checkbox" name="tick7">I understand that if I cancel or if I do not provide all of the required documents with me I will not get a refund.<br>
+                        <input type="checkbox" name="tick8">I agree to follow all instructions and rules of my chaperones.<br>
+                        <input type="checkbox" name="tick9">I agree to pay by check or PayPal by September 30, 2015.<br>
+                        <input type="checkbox" name="tick10">I understand that if I pay by PayPal I need to add 4% to the total cost to cover the fees.<br>
+                    </span>
+                </div>
+                <br>
+                <div class="host_info">
+                    <span class="header">Host family information<br></span>
+                    My (host) parent is <input type="text" name="host_name" value="{{ host_name }}"><br>
+                    My (host) parent's phone number is' <input type="text" name="host_phone" value="{{ host_phone }}"><br>
+                    My (host) parent's email is' <input type="text" name="host_email" value="{{ host_email }}"><br>
                 </div>
 
-
-            <span class="port">Belize</span><br>
-                <div class="excursion_options">
-                $80 <input type="radio" name="excursion_2" value="Dark Knight Cave Tubing" onclick="set_e2(80)">Dark Knight Cave Tubing<br>
-                <span class="excursion_description">
+                <div class="excursions">
+                    <h1>Shore Excursions</h1>
                     <p>
-                        Experience breathtaking dry caves, archaeological artifacts, followed by a jungle trek with the grand finale. Enter an open air cave and enjoy the beauty of the formations. Begin at Clevis point, found at the entrance where you will hear of the importance of the caves to the Mayans. You will be amazed at the Shear Limestone walls that extend out offering shade. Pass by Drop Cave before entering  the jungle, then hiking a trail that leads to the North entrance of Jaguar Cave.You will be taken back by the size of this Cave, with 100 foot ceilings, teeming with stalactites, "the finger" a fallen stalactite, as well as sparkling crystal stalagmites. You'll exit through a "secret" side entrance and hike a jungle trail along crystal clear Indian Creek to start your Darknight Cave Tubing float. As you float in the Creek; each turn brings a visual display, with polished walls from over 1000 years of flow. As the creek narrows you feel the rush as the rapids rappel you forward. Passing through the exit you turn the corner of the canopy that awaits the end of the float.
+                        You must select one excursion per port.
                     </p>
-                </span>
-                $60 <input type="radio" name="excursion_2" value="Sergeant's Cay Snorkel Adventure" onclick="set_e2(60)">Sergeant's Cay Snorkel Adventure<br>
-                <span class="excursion_description"><p>
-                    Visit a private island equipped with modern facilities and snorkel over Belize’s world famous barrier reef. Take a short transfer to the private Island of Spanish Lookout Caye and begin your snorkeling adventure. Head for the largest barrier reef in the western hemisphere and Sergeant’s Caye. Enjoy an hour of snorkel time and sunshine followed by a 45 minute private island beach break at Spanish Lookout Caye before returning to the cruise ship. Amenities include: beach chairs, rest rooms, mats, kayaks, swimming area, fresh water showers and bar are on location at Spanish Lookout Caye after the snorkel excursion.
-                </p></span>
-                Free <input type="radio" name="excursion_2" value="Stay on ship" onclick="set_e2(0)">Stay on ship<br>
-                <span class="excursion_description"><p>
-                    A chaperone will stay on the ship if any minor chooses this option.
-                </p></span>
+
+                    <div class="port">
+                        <h2>Cozumel</h2>
+                        <div class="excursion_options">
+                        <b>$60 <input type="radio" name="excursion_1" value="Stand-up Paddle Boarding, Snorkel and Beach" onclick="set_e1(60)">Stand-up Paddle Boarding, Snorkel and Beach</b><br>
+                        <span class="excursion_description">
+                            <p>
+                                Your adventure starts with a short taxi ride to a fabulous Beach Club on the beautiful north side of the island.  Here you will be met by your expert guides and receive instructions on paddle boarding. Next you are off to enjoy an amazing 45 minutes paddle along the beautiful coastline.  Paddle boarding is for everyone and you can choose whether you stand or sit as enjoy this unique experience. After your paddle you will receive snorkel equipment and follow your guide into the island’s premier snorkel area.
+                            </p>
+                        </span>
+                        <b>$70 <input type="radio" name="excursion_1" value=" Ancient Culture / Mayan Ruins &amp; Beach" onclick="set_e1(70)">Ancient Culture / Mayan Ruins &amp; Beach</b><br>
+                        <span class="excursion_description">
+                            <p>
+                                Begin your tour with a short drive through Cozumel’s largest town, San Miguel, to see local houses, shops and modern-day residents, many of who are descendants of the area’s original Mayan inhabitants. Away from modern civilization and nestled in the jungle, San Gervasio was once the island’s center of culture and religion. Your certified guide will lead you through the archaeological site and share important facts, cultural histories and myths along the way. After returning to the bus, you will head off for a scenic drive along Cozumel’s beautiful East side. Away from the bustle of town, this nearly undeveloped coast is a side of the island that few visitors get to see and offers an idyllic landscape of white sand beaches, rugged rock formations, lush tropical vegetation and the iridescent waters of the Caribbean. Stop to enjoy one full hour to relax on the beach.
+                            </p>
+                        </span>
+                        <b>Free <input type="radio" name="excursion_1" value=" Stay on ship" onclick="set_e1(0)">Stay on ship</b><br>
+                        <span class="excursion_description">
+                            <p>
+                                A chaperone will stay on the ship if any minor chooses this option.
+                            </p>
+                        </span>
+                        </div>
+                    </div>
+
+                    <div class="port">
+                        <h2>Belize</h2>
+                        <div class="excursion_options">
+                            <b>$80 <input type="radio" name="excursion_2" value="Dark Knight Cave Tubing" onclick="set_e2(80)">Dark Knight Cave Tubing</b><br>
+                            <span class="excursion_description">
+                                <p>
+                                    Experience breathtaking dry caves, archaeological artifacts, followed by a jungle trek with the grand finale. Enter an open air cave and enjoy the beauty of the formations. Begin at Clevis point, found at the entrance where you will hear of the importance of the caves to the Mayans. You will be amazed at the Shear Limestone walls that extend out offering shade. Pass by Drop Cave before entering  the jungle, then hiking a trail that leads to the North entrance of Jaguar Cave.You will be taken back by the size of this Cave, with 100 foot ceilings, teeming with stalactites, "the finger" a fallen stalactite, as well as sparkling crystal stalagmites. You'll exit through a "secret" side entrance and hike a jungle trail along crystal clear Indian Creek to start your Darknight Cave Tubing float. As you float in the Creek; each turn brings a visual display, with polished walls from over 1000 years of flow. As the creek narrows you feel the rush as the rapids rappel you forward. Passing through the exit you turn the corner of the canopy that awaits the end of the float.
+                                </p>
+                            </span>
+                            <b>$60 <input type="radio" name="excursion_2" value="Sergeant's Cay Snorkel Adventure" onclick="set_e2(60)">Sergeant's Cay Snorkel Adventure</b><br>
+                            <span class="excursion_description"><p>
+                                Visit a private island equipped with modern facilities and snorkel over Belize’s world famous barrier reef. Take a short transfer to the private Island of Spanish Lookout Caye and begin your snorkeling adventure. Head for the largest barrier reef in the western hemisphere and Sergeant’s Caye. Enjoy an hour of snorkel time and sunshine followed by a 45 minute private island beach break at Spanish Lookout Caye before returning to the cruise ship. Amenities include: beach chairs, rest rooms, mats, kayaks, swimming area, fresh water showers and bar are on location at Spanish Lookout Caye after the snorkel excursion.
+                            </p></span>
+                            <b>Free <input type="radio" name="excursion_2" value="Stay on ship" onclick="set_e2(0)">Stay on ship</b><br>
+                            <span class="excursion_description"><p>
+                                A chaperone will stay on the ship if any minor chooses this option.
+                            </p></span>
+                        </div>
+                    </div>
+
+                    <div class="port">
+                        <h2>Mahogony Bay</h2>
+                        <div class="excursion_options">
+                            <b>$20 <input type="radio" name="excursion_3" value="Relax on the Beach" onclick="set_e3(20)">Relax on the Beach</b><br>
+                            <span class="excursion_description"><p>
+                                Take unlimited rides on the Magical Flying Beach Chair which provides roundtrip transfer between the Mahogany Bay Cruise Center and Mahogany Beach.  Once at the beach, you can enjoy your own shady spot with a Clam Shell that covers up to two lounge chairs.  This package also includes the use of beach floats for you to relax while in the water.
+                            </p></span>
+                            <b>$60 <input type="radio" name="excursion_3" value="Zip-Line Express" onclick="set_e3(60)">Sergeant's Cay Snorkel Adventure</b><br>
+                            <span class="excursion_description"><p>
+                                Zip with confidence! Soaring through Roatan's tropical foliage enjoying stunning Caribbean ocean and island views, This canopy tour will give you an exhilarating experience you will not soon forget.  Located within a 150 acre nature reserve and a 10 minute walk from your ship, with 11 cables totaling more than a mile, it offers a unique adventure through the island's diverse vegetation, from dry oak to rain forest, and a chance to get close to our unique tropical wildlife, from iguanas to colorful birds to agoutis.
+                                Note: Platforms are between 16 ft - 65 ft above ground.
+                            </p></span>
+                            <b>Free <input type="radio" name="excursion_3" value="Stay on ship" onclick="set_e3(0)">Stay on ship</b><br>
+                            <span class="excursion_description"><p>
+                                A chaperone will stay on the ship if any minor chooses this option.
+                            </p></span>
+                        </div>
+                    </div>
                 </div>
 
-                <span class="port">Mahogony Bay</span><br>
-                <div class="excursion_options">
-                    $20 <input type="radio" name="excursion_3" value="Relax on the Beach" onclick="set_e3(20)">Relax on the Beach<br>
-                    <span class="excursion_description"><p>
-                        Take unlimited rides on the Magical Flying Beach Chair which provides roundtrip transfer between the Mahogany Bay Cruise Center and Mahogany Beach.  Once at the beach, you can enjoy your own shady spot with a Clam Shell that covers up to two lounge chairs.  This package also includes the use of beach floats for you to relax while in the water.
-                    </p></span>
-                    $60 <input type="radio" name="excursion_3" value="Zip-Line Express" onclick="set_e3(60)">Sergeant's Cay Snorkel Adventure<br>
-                    <span class="excursion_description"><p>
-                        Zip with confidence! Soaring through Roatan's tropical foliage enjoying stunning Caribbean ocean and island views, This canopy tour will give you an exhilarating experience you will not soon forget.  Located within a 150 acre nature reserve and a 10 minute walk from your ship, with 11 cables totaling more than a mile, it offers a unique adventure through the island's diverse vegetation, from dry oak to rain forest, and a chance to get close to our unique tropical wildlife, from iguanas to colorful birds to agoutis.
-                        Note: Platforms are between 16 ft - 65 ft above ground.
-                    </p></span>
-                    Free <input type="radio" name="excursion_3" value="Stay on ship" onclick="set_e3(0)">Stay on ship<br>
-                    <span class="excursion_description"><p>
-                        A chaperone will stay on the ship if any minor chooses this option.
-                    </p></span>
+                <h1>Price</h1>
+                <div class="price">
+                    Your total price is <b>$<span id="price"></span></b><br>
+                    Paying with PayPal <b>$<span id="price_paypal"></span></b><br>
+                    <em>Please write down this number before pressing sign up!</em>
                 </div>
-
+                <button type="submit" class="btn btn-lg btn-success">Sign up!</button>
+            </form>
+            <p class="text-muted bot">
+                For problems contact either Cheri McCaslin: cheri.mccaslin _at_ gmail.com, or the webmaster: yfu_site _at_ emilkirkegaard.dk.
+            </p>
         </div>
-
-        <div class="price">
-        Total price is $<span id="price"></span><br>
-        Paying with PayPal $<span id="price_paypal"></span><br>
-        <em>Please write down this number before pressing sign up!</em>
-        </div>
-
-        <input type="submit" value="Sign up!"/>
-    </form>
-</div>
+    </div>
 </body>
