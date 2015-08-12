@@ -36,15 +36,20 @@ def signup(request):
         #check validity depending on person_type
         post_data = form.cleaned_data
 
-        #calculate price
+        #price list
         price_list = {"Stay on ship": 0,
         "Stand-up Paddle Boarding, Snorkel and Beach": 60,
         "Ancient Culture / Mayan Ruins & Beach": 70,
         "Dark Knight Cave Tubing": 80,
         "Sergeant's Cay Snorkel Adventure": 80,
         "Relax on the Beach": 20,
-        "Zip-Line Express": 60}
-        price = 450 + price_list[post_data["excursion_1"]] + price_list[post_data["excursion_2"]] + price_list[post_data["excursion_3"]]
+        "Zip-Line Express": 60,
+        "basic_price": 450}
+
+        #calculate price
+        def calculatePrice():
+            price = price_list["basic_price"] + price_list[post_data["excursion_1"]] + price_list[post_data["excursion_2"]] + price_list[post_data["excursion_3"]]
+            return(price)
 
         #did user provide the type?
         if not "person_type" in post_data:
@@ -64,7 +69,7 @@ def signup(request):
                 post_data = remove_ticks(post_data)
 
                 #save to database
-                s = SignUp(signup_date = timezone.now(), price = price, **post_data)
+                s = SignUp(signup_date = timezone.now(), price = calculatePrice(), **post_data)
                 s.save()
                 return HttpResponse("Thanks for signing up! To make your payment, please send either send Cheri a check or pay via <a href='http://paypal.com'>Paypal</a>. The email is cheri.mccaslin@gmail.com .")
             else:
@@ -81,7 +86,7 @@ def signup(request):
                 #remove unused entries in dict
                 post_data = remove_ticks(post_data)
 
-                s = SignUp(signup_date = timezone.now(), price = price, **post_data)
+                s = SignUp(signup_date = timezone.now(), price = calculatePrice(), **post_data)
                 s.save()
                 return HttpResponse("Thanks for signing up! To make your payment, please send either send Cheri a check or pay via <a href='http://paypal.com'>Paypal</a>. The email is cheri.mccaslin@gmail.com .")
             else:
@@ -96,7 +101,7 @@ def signup(request):
                 #remove unused entries in dict
                 post_data = remove_ticks(post_data)
 
-                s = SignUp(signup_date = timezone.now(), price = price, **post_data)
+                s = SignUp(signup_date = timezone.now(), price = calculatePrice(), **post_data)
                 s.save()
                 return HttpResponse("Thanks for signing up! To make your payment, please send either send Cheri a check or pay via <a href='http://paypal.com'>Paypal</a>. The email is cheri.mccaslin@gmail.com .")
             else:
