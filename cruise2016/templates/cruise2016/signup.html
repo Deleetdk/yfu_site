@@ -111,16 +111,22 @@
                 {% csrf_token %}
                 <h1>Basic information</h1>
                 My name is <input type="text" name="name" value="{{ name }}"><br>
-                My gender is <input type="radio" name="gender" value="Male">Male<input type="radio" name="gender" value="Female">Female<br>
+                My gender is <input type="radio" name="gender" value="Male">Male <input type="radio" name="gender" value="Female">Female<br>
                 My age is <input type="text" name="age" value="{{ age }}"><br>
                 My phone number is <input type="text" name="phone" value="{{ phone }}"><br>
                 My email is <input type="text" name="email" value="{{ email }}"><br>
                 How many family members are going on the trip? <input type="text" name="total_family_members" value="{{ total_family_members }}"><br>
                 <span class="radio">
                     I am a(n)
-                    <input type="radio" name="person_type" value="Exchange student" onclick="showExchange(true); showHost(true)">Exchange student
-                    <input type="radio" name="person_type" value="Host sibling" onclick="showExchange(false); showHost(true)">Host sibling
-                    <input type="radio" name="person_type" value="Host parent" onclick="showExchange(false); showHost(false)">Host parent
+                    <label>
+                        <input type="radio" name="person_type" value="Exchange student" onclick="showExchange(true); showHost(true)">Exchange student
+                    </label>
+                    <label>
+                        <input type="radio" name="person_type" value="Host sibling" onclick="showExchange(false); showHost(true)">Host sibling
+                    </label>
+                    <label>
+                        <input type="radio" name="person_type" value="Host parent" onclick="showExchange(false); showHost(false)">Host parent
+                    </label>
                 </span>
 
                 <div class="exchange_ticks">
