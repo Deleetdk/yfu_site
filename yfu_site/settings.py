@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'i34435353k0fd<897df883897""(#78yDUY38973d'
+SECRET_KEY = "i34435353k0fd<897df88389778yDUY38973d"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -101,7 +101,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/opt/yfu/static'
+STATIC_ROOT = '/home/emil/server/yfu/static'
 
 #load real settings file
 from yfu_site.settingsSecret import *
